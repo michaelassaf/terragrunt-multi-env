@@ -7,7 +7,7 @@ remote_state {
   config = {
     bucket = "pathing-terraform-state"
 
-    key            = "environments/${local.env}//terraform.tfstate"
+    key            = "environments/${local.env}/terraform.tfstate"
     region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "pathing-lock-table"

@@ -1,17 +1,20 @@
-env ?= dev
-aws-profile = "pathing-$(env)"
+aws-profile:= pathing-dev
 aws-vault:= aws-vault exec $(aws-profile) --no-session --
+terragrunt_extra_args:=
 
 init: prerequisites
-	$(aws-vault) terragrunt init
+	$(aws-vault) terragrunt init \
+	$(terragrunt_extra_args)
 
 plan: prerequisites
-	$(aws-vault) terragrunt plan
+	$(aws-vault) terragrunt plan \
+	$(terragrunt_extra_args)
 
 apply: prerequisites
 	$(aws-vault) terragrunt apply \
-		--auto-approve
+		--auto-approve \
+		$(terragrunt_extra_args)
 
 prerequisites:
-	terragrunt validate
+	$(aws-vault) terragrunt validate
 	terragrunt hclfmt
