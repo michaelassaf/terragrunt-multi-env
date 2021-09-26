@@ -15,6 +15,11 @@ apply: prerequisites
 		--auto-approve \
 		$(terragrunt_extra_args)
 
+destroy: prerequisites
+	$(aws-vault) terragrunt destroy \
+		--auto-approve \
+		$(terragrunt_extra_args)
+
 prerequisites:
 	$(aws-vault) terragrunt validate
 	terragrunt hclfmt

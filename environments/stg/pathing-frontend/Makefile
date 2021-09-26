@@ -1,4 +1,4 @@
-aws-profile:= pathing-dev
+aws-profile:= pathing-stg
 aws-vault:= aws-vault exec $(aws-profile) --no-session --
 terragrunt_extra_args:=
 
@@ -12,6 +12,11 @@ plan: prerequisites
 
 apply: prerequisites
 	$(aws-vault) terragrunt apply \
+		--auto-approve \
+		$(terragrunt_extra_args)
+
+destroy: prerequisites
+	$(aws-vault) terragrunt destroy \
 		--auto-approve \
 		$(terragrunt_extra_args)
 
