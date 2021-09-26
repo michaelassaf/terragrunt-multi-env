@@ -11,7 +11,6 @@ remote_state {
     region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "pathing-lock-table"
-    profile        = "pathing-${local.env}"
   }
 }
 
