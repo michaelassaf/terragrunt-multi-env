@@ -12,7 +12,7 @@ plan: prerequisites
 
 apply: prerequisites
 	$(aws-vault) terragrunt apply \
-		--auto-approve \
+		--auto-approve
 		$(terragrunt_extra_args)
 
 destroy: prerequisites
